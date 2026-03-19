@@ -1,4 +1,4 @@
-export type TaskStatus = 'todo' | 'in_progress' | 'done';
+export type TaskStatus = 'todo' | 'in_progress' | 'done' | 'archived';
 export type TaskPriority = 'low' | 'medium' | 'high';
 
 export interface Task {
@@ -10,6 +10,11 @@ export interface Task {
   userId: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ArchivedTask extends Task {
+  archivedAt: Date;
+  archivedBy: string;
 }
 
 export interface CreateTaskInput {

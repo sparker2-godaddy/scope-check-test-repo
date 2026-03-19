@@ -14,3 +14,12 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   page: number;
   totalPages: number;
 }
+
+export type ArchivalStatus = 'active' | 'archived';
+
+export interface ArchivalMetadata {
+  status: ArchivalStatus;
+  archivedAt?: Date;
+  archivedBy?: string;
+  restoredAt?: Date;
+}
