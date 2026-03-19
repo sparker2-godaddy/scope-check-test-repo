@@ -41,7 +41,15 @@ router.post('/login', async (req: Request<{}, {}, LoginBody>, res: Response) => 
   // In real app: look up user in database and verify password
   const userId = 'user_123';
   const token = generateToken({ userId, email });
-  res.json({ token });
+
+  // Fix: respect returnTo query parameter for post-reset redirect
+  const returnTo = req.query.returnTo as string | undefined;
+  const response: Record<string, string> = { token };
+  if (returnTo) {
+    response.redirectUrl = returnTo;
+  }
+
+  res.json(response);
 });
 
 router.post('/logout', (_req: Request, res: Response) => {

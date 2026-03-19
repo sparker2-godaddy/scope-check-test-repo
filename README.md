@@ -38,3 +38,12 @@ npm run dev
 ```bash
 npm test
 ```
+
+## Contributing
+
+Please read our contribution guidelines before submitting PRs.
+All code must pass linting and tests before merge.
+
+## License
+
+MIT

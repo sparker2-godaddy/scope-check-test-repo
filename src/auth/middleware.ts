@@ -4,6 +4,7 @@ import { AppError } from '../shared/errors';
 
 export interface AuthenticatedRequest extends Request {
   userId?: string;
+  originalUrl: string;
 }
 
 export function requireAuth(
@@ -14,7 +15,9 @@ export function requireAuth(
   const header = req.headers.authorization;
 
   if (!header || !header.startsWith('Bearer ')) {
-    throw new AppError('Missing or invalid authorization header', 401);
+    // Preserve the original URL for post-login redirect
+    const returnTo = encodeURIComponent(req.originalUrl);
+    throw new AppError(`Authentication required. Redirect to /auth/login?returnTo=${returnTo}`, 401);
   }
 
   const token = header.slice(7);

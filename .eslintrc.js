@@ -14,5 +14,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     '@typescript-eslint/explicit-function-return-type': 'warn',
     'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'semi': ['error', 'always'],
+    'quotes': ['error', 'single'],
   },
 };
