@@ -11,7 +11,7 @@ router.use(requireAuth);
 router.get('/', async (req: AuthenticatedRequest, res: Response) => {
   // In real app: fetch tasks from database for req.userId
   const tasks: Task[] = [];
-  res.json({ tasks });
+  res.json({ tasks, count: tasks.length });
 });
 
 router.post('/', async (req: AuthenticatedRequest, res: Response) => {
@@ -31,7 +31,7 @@ router.post('/', async (req: AuthenticatedRequest, res: Response) => {
   };
 
   // In real app: save to database
-  res.status(201).json({ task });
+  res.status(201).json({ task, message: 'Task created successfully' });
 });
 
 router.put('/:id', async (req: AuthenticatedRequest, res: Response) => {
@@ -43,13 +43,13 @@ router.put('/:id', async (req: AuthenticatedRequest, res: Response) => {
   }
 
   // In real app: update task in database
-  res.json({ task: { id, ...parsed.data, updatedAt: new Date() } });
+  res.json({ task: { id, ...parsed.data, updatedAt: new Date() }, message: 'Task updated' });
 });
 
 router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
   // In real app: delete task from database
-  res.json({ message: `Task ${id} deleted` });
+  res.json({ message: `Task ${id} deleted successfully` });
 });
 
 export { router as taskRoutes };

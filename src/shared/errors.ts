@@ -17,10 +17,18 @@ export function errorHandler(
   _next: NextFunction
 ): void {
   if (err instanceof AppError) {
-    res.status(err.statusCode).json({ error: err.message });
+    res.status(err.statusCode).json({
+      error: err.message,
+      statusCode: err.statusCode,
+      timestamp: new Date().toISOString(),
+    });
     return;
   }
 
   console.error('Unhandled error:', err);
-  res.status(500).json({ error: 'Internal server error' });
+  res.status(500).json({
+    error: 'Internal server error',
+    statusCode: 500,
+    timestamp: new Date().toISOString(),
+  });
 }
