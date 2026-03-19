@@ -30,7 +30,7 @@ router.post('/', async (req: AuthenticatedRequest, res: Response) => {
     updatedAt: new Date(),
   };
 
-  // In real app: save to database
+  // In real app: persist to database
   res.status(201).json({ task });
 });
 
@@ -48,7 +48,7 @@ router.put('/:id', async (req: AuthenticatedRequest, res: Response) => {
 
 router.delete('/:id', async (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
-  // In real app: delete task from database
+  // In real app: remove task from database
   res.json({ message: `Task ${id} deleted` });
 });
 

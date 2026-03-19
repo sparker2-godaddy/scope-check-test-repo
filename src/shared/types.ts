@@ -14,3 +14,13 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   page: number;
   totalPages: number;
 }
+
+export interface UserProfile {
+  id: string;
+  email: string;
+  name: string;
+  displayName?: string;
+  avatarUrl?: string;
+  bio?: string;
+  timezone?: string;
+}
